@@ -7,8 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./message-new.component.css']
 })
 export class MessageNewComponent implements OnInit {
-  firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
+  firstFormGroup:FormGroup;
+  secondFormGroup:FormGroup;
   priorities:string[] = ['High', 'Medium', 'Low'];
   departments:object[] = [
     {
@@ -27,7 +27,7 @@ export class MessageNewComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder) { }
 
-  ngOnInit( ) {
+  ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({
       emailCtrl: ['', Validators.required],
       priorityCtrl: ['', Validators.required],
@@ -36,6 +36,10 @@ export class MessageNewComponent implements OnInit {
     this.secondFormGroup = this.formBuilder.group({
       messageCtrl: ['', Validators.required]
     });
+  }
+
+  getDepartmentName(department:object) {
+    return department ? department['name'] : undefined;
   }
 
 }
